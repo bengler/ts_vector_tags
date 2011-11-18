@@ -1,6 +1,6 @@
 # TsVectorTags
 
-A simple tagging library that uses the (fairly exotic) `ts_vector` type in PostgreSQL on top of ActiveRecord.
+A simple tagging library that uses the (fairly exotic) `tsvector` type in PostgreSQL on top of ActiveRecord.
 
 ## Requirements
 
