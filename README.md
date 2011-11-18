@@ -1,14 +1,17 @@
 # TsVectorTags
 
-A simple tagging library that uses the (fairly exotic) `ts_vector` type in PostgreSQL.
+A simple tagging library that uses the (fairly exotic) `ts_vector` type in PostgreSQL on top of ActiveRecord.
+
+## Requirements
+
+* ActiveRecord
+* a field `tags_vector` of type `tsvector` on the underlying table
 
 ## Usage
 
 Tags can be set using either an array, or a comma separated list.
 
-Note that the including class *must* have an attribute `tags_vector`.
-
-    class Post
+    class Post < ActiveRecord::Base
       include TsVectorTags
 
       # ...
@@ -24,8 +27,7 @@ Note that the including class *must* have an attribute `tags_vector`.
     post.tags
     => ['bing', 'bong']
 
-
-The including class will also have a scope:
+The including class has a scope:
 
     Post.with_tags('Paris, Texas')
     Post.with_tags('Paris', 'Texas')
