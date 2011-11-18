@@ -15,9 +15,11 @@ describe TsVectorTags::Standardizer do
 end
 
 class Thing
+  def self.scope(name, options = {}); end
+
   attr_accessor :tags_vector
-  def self.scope(name, scope_options = {}); end
   include TsVectorTags
+
 end
 
 describe TsVectorTags do
@@ -58,6 +60,42 @@ describe TsVectorTags do
     it "reads tag vectors" do
       thing.tags_vector = "'bing' 'bong'"
       thing.tags.should eq(['bing', 'bong'])
+    end
+  end
+
+  context "with the required attributes" do
+    it "does not raise an exception" do
+      lambda {
+        class GoodThing
+          def self.scope(name, options = {}); end
+          attr_accessor :tags_vector
+          include TsVectorTags
+        end
+      }.should_not raise_error
+    end
+  end
+
+  context "without a tags_vector attribute" do
+    it "raises a helpful exception when no tags_vector writer is present" do
+      lambda {
+        class OneBadThing
+          def self.scope(name, options = {}); end
+
+          attr_reader :tags_vector
+          include TsVectorTags
+        end
+      }.should raise_error(TsVectorTags::MissingAttributeError)
+    end
+
+    it "raises a helpful exception when no tags_vector reader is pressent" do
+      lambda {
+        class AnotherBadThing
+          def self.scope(name, options = {}); end
+
+          attr_writer :tags_vector
+          include TsVectorTags
+        end
+      }.should raise_error(TsVectorTags::MissingAttributeError)
     end
   end
 end

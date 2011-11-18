@@ -1,6 +1,7 @@
 require "ts_vector_tags/version"
 
 module TsVectorTags
+  class MissingAttributeError < Exception; end
 
   module Standardizer
     class << self
@@ -16,6 +17,11 @@ module TsVectorTags
   end
 
   def self.included(base)
+    unless base.instance_methods.include?(:tags_vector) && base.instance_methods.include?(:tags_vector=)
+      msg = "The TsVectorTags mixin assumes that the underlying PostgreSQL table has a field `tags_vector` of type tsvector"
+      raise TsVectorTags::MissingAttributeError.new(msg)
+    end
+
     base.class_eval do
       scope :with_tags, lambda { |tags|
         where("tags_vector @@ to_tsquery('simple', ?) ", TsVectorTags::Standardizer.tagify(tags).join(' & '))
