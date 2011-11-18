@@ -5,10 +5,10 @@ require "ts_vector_tags/version"
 Gem::Specification.new do |s|
   s.name        = "ts_vector_tags"
   s.version     = TsVectorTags::VERSION
-  s.authors     = ["Simen Svale Skogsrud"]
-  s.email       = ["simen@bengler.no"]
+  s.authors     = ["Simen Svale Skogsrud", "Katrina Owen"]
+  s.email       = ["simen@bengler.no", "katrina@bengler.no"]
   s.homepage    = ""
-  s.summary     = %q{Super simple tag mixin for postgresql}
+  s.summary     = %q{Super simple tag mixin for postgresql and activerecord}
   s.description = %q{Extremely simple, if somewhat exotic, mixin that uses the tsvector feature in postgresql to add tags to an ActiveRecord model.}
 
   s.rubyforge_project = "ts_vector_tags"
