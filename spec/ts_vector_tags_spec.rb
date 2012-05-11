@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'ts_vector_tags'
 
 describe TsVectorTags::Standardizer do
   it "normalizes" do

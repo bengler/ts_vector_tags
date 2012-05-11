@@ -1,5 +1,3 @@
-require "ts_vector_tags/version"
-
 module TsVectorTags
 
   module Standardizer
