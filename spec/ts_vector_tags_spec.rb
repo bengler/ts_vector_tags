@@ -1,8 +1,9 @@
+# encoding: utf-8
 require 'ts_vector_tags'
 
 describe TsVectorTags::Standardizer do
   it "normalizes" do
-    TsVectorTags::Standardizer.normalize('abc-!@ #$    %^&*()123').should eq('abc123')
+    TsVectorTags::Standardizer.normalize('abc-!@ #$    %^&*()123æøå∞').should eq('abc123æøå')
   end
 
   it "splits and normalizes a string" do
