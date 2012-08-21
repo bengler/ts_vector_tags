@@ -1,9 +1,13 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
 
+module TsVectorTags
+  VERSION = "0.0.3"
+end
+
 Gem::Specification.new do |s|
   s.name        = "ts_vector_tags"
-  s.version      = "0.0.2"
+  s.version     = TsVectorTags::VERSION
   s.authors     = ["Simen Svale Skogsrud", "Katrina Owen"]
   s.email       = ["simen@bengler.no", "katrina@bengler.no"]
   s.homepage    = ""
