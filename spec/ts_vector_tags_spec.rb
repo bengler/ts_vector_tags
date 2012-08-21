@@ -13,6 +13,10 @@ describe TsVectorTags::Standardizer do
   it "normalizes tags in an arrayarray" do
     TsVectorTags::Standardizer.tagify(['abc-!@ #$  ', '  %^&*()123']).should eq(['abc', '123'])
   end
+
+  it "removes empty tags" do
+    TsVectorTags::Standardizer.tagify(['abc', '  %^&*()']).should eq(['abc'])
+  end
 end
 
 class Thing

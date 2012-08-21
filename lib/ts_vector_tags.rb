@@ -5,7 +5,7 @@ module TsVectorTags
     class << self
       def tagify(tags)
         tags = tags.split(/\s*,\s*/) if tags.is_a?(String)
-        tags.map!{ |tag| self.normalize(tag) }
+        tags.map{ |tag| self.normalize(tag) }.reject(&:empty?)
       end
 
       def normalize(tag)
