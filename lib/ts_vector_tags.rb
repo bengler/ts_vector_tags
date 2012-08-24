@@ -9,7 +9,7 @@ module TsVectorTags
       end
 
       def normalize(tag)
-        tag.downcase.gsub(/[^[:alnum:]]/, "")
+        tag.downcase.gsub(/[^[:alnum:]_]/, "")
       end
     end
   end
