@@ -3,7 +3,7 @@ require 'ts_vector_tags'
 
 describe TsVectorTags::Standardizer do
   it "normalizes" do
-    TsVectorTags::Standardizer.normalize('abc-!@ #$    %^&*()123æøå∞').should eq('abc123æøå')
+    TsVectorTags::Standardizer.normalize('abc-!@ #$ _  %^&*()123æøå∞').should eq('abc_123æøå')
   end
 
   it "splits and normalizes a string" do
