@@ -34,7 +34,7 @@ module TsVectorTags
       # Accepts a proper ts_query an allows complex logical expressions like "foo & !(bar | bling)"
       scope :with_tags_query, lambda { |query|
         raise InvalidTsQueryError, "Invalid tag query '#{query}'" unless TsVectorTags.acceptable_tsquery?(query)
-        where("tags_vector @@ to_tsquery('#{query}')")
+        where("tags_vector @@ to_tsquery('simple', '#{query}')")
       }
     end
   end
