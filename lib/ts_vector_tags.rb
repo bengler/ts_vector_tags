@@ -40,7 +40,7 @@ module TsVectorTags
 
       # Make sure empty vectors are always saved as null values
       before_save lambda {
-        self.tags_vector = nil if self.tags_vector.strip.size == 0
+        self.tags_vector = nil if self.tags_vector && self.tags_vector.strip.size == 0
       }
     end
   end
