@@ -27,10 +27,18 @@ Tags can be set using either an array, or a comma separated list.
     post.tags
     => ['bing', 'bong']
 
-The including class has a scope:
+The including class has scopes:
+
+Common '&'-searches:
 
     Post.with_tags('Paris, Texas')
     Post.with_tags('Paris', 'Texas')
+
+Complex tsqueries:
+
+    Post.with_tags_query("foo & !(bar | baz)")
+
+tsqueries deemed potentially dangerous raises the `TsVectorTags::InvalidTsQueryError` exception.
 
 Tags are normalized:
 
