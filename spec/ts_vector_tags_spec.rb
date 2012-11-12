@@ -22,6 +22,8 @@ end
 class Thing
   def self.scope(name, options = {}); end
 
+  def self.before_save(*args); end
+
   attr_accessor :tags_vector
   include TsVectorTags
 

@@ -2,7 +2,7 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 module TsVectorTags
-  VERSION = "0.0.6"
+  VERSION = "0.0.7"
 end
 
 Gem::Specification.new do |s|
