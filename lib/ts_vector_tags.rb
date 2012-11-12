@@ -2,7 +2,7 @@
 module TsVectorTags
 
   # Regexp to reject injection attacks with ts_queries
-  TSQUERY_VALIDATOR = /^[[:alnum:]\*\:\(\)\&\!\|[:space:]]+$/
+  TSQUERY_VALIDATOR = /^[[:alnum:]\_\*\:\(\)\&\!\|[:space:]]+$/
 
   class InvalidTsQueryError < StandardError; end
 
