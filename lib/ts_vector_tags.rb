@@ -28,14 +28,14 @@ module TsVectorTags
     base.class_eval do
       # Accepts a comma separated list of tags and applies the 'and'-operator to them
       scope :with_tags, lambda { |tags|
-        where("tags_vector @@ to_tsquery('simple', ?) ", TsVectorTags::Standardizer.tagify(tags).join(' & '))
+        where("tags_vector @@ ?::tsquery ", TsVectorTags::Standardizer.tagify(tags).join(' & '))
       }
 
       # Accepts a proper ts_query an allows complex logical expressions like "foo & !(bar | bling)"
       scope :with_tags_query, lambda { |query|
         raise InvalidTsQueryError, "Invalid tag query '#{query}'" unless TsVectorTags.acceptable_tsquery?(query)
         # "!foo" will not match empty tsvectors, so we have to cheat using coalesce :-(
-        where("coalesce(tags_vector, '-invalid-tag-') @@ to_tsquery('simple', '#{query}')")
+        where("coalesce(tags_vector, '-invalid-tag-') @@ '#{query}'::tsquery")
       }
 
       # Make sure empty vectors are always saved as null values
