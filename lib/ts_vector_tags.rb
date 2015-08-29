@@ -34,8 +34,12 @@ module TsVectorTags
       # Accepts a proper ts_query an allows complex logical expressions like "foo & !(bar | bling)"
       scope :with_tags_query, lambda { |query|
         raise InvalidTsQueryError, "Invalid tag query '#{query}'" unless TsVectorTags.acceptable_tsquery?(query)
-        # "!foo" will not match empty tsvectors, so we have to cheat using coalesce :-(
-        where("coalesce(tags_vector, '-invalid-tag-') @@ '#{query}'::tsquery")
+        if query =~ /!/
+          # "!foo" will not match empty tsvectors, so we have to cheat using coalesce :-(
+          where("coalesce(tags_vector, '-invalid-tag-') @@ tsquery '#{query}'")
+        else
+          where("tags_vector @@ tsquery '#{query}'")
+        end
       }
 
       # Make sure empty vectors are always saved as null values
