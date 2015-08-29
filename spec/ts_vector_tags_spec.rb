@@ -33,8 +33,8 @@ describe TsVectorTags do
 
   describe "tsqueries" do
     it "rejects potentially dangerous tsqueries" do
-      TsVectorTags.acceptable_tsquery?("'").should be_false
-      TsVectorTags.acceptable_tsquery?('"').should be_false
+      expect(TsVectorTags.acceptable_tsquery?("'")).to eq false
+      expect(TsVectorTags.acceptable_tsquery?('"')).to eq false
     end
 
     it "accepts plain tsqueries" do

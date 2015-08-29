@@ -21,7 +21,7 @@ module TsVectorTags
 
   def self.acceptable_tsquery?(query)
     # TODO: Check for balanced parantheses
-    query =~ TSQUERY_VALIDATOR
+    !!(query =~ TSQUERY_VALIDATOR)
   end
 
   def self.included(base)
